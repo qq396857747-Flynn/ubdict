@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=UbDict
+GenericName=Dictionary
+Comment=Intelligent English-Chinese dictionary with text/image/PDF capture
+Comment[zh_CN]=智能英汉词典，支持文本/图片/PDF取词
+Exec=ubdict
+Icon=ubdict
+Categories=Utility;Dictionary;Office;
+Keywords=dictionary;translate;english;chinese;ocr;
+StartupNotify=true
+Terminal=false

@@ -1,0 +1,33 @@
+name: Windows installer
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build-windows-installer:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install Windows packaging tools
+        shell: pwsh
+        run: |
+          choco install tesseract --yes --no-progress
+          choco install innosetup --yes --no-progress
+      - name: Build installer
+        shell: pwsh
+        run: ./scripts/build_windows.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: UbDict-Windows-x64
+          path: dist/UbDictSetup-*-x64.exe
+          if-no-files-found: error
